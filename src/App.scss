@@ -1,0 +1,561 @@
+@import "Scss/variables";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import "Scss/mixin";
+
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  font-family: "Inter", sans-serif;
+  position: relative;
+  background-color: $purple__1;
+  color: white;
+  font-size: 14px;
+  line-height: 1.5;
+  .sideBar {
+    width: 240px;
+    background-color: $sidebar-bg;
+    height: calc(100vh - 90px);
+    position: relative;
+    padding-top: 70px;
+    padding-bottom: 240px;
+    .activeLi {
+      li {
+        background-color: $border-primary;
+        border-left: 3px solid $purple__3 !important;
+      }
+    }
+    .logoMp3 {
+      position: fixed;
+      width: 240px;
+      top: 0;
+      padding: 0 25px 0 28px;
+      display: flex;
+      align-items: center;
+      height: 70px;
+      img {
+        width: 120px;
+        height: 40px;
+      }
+    }
+    .sideBar__menu {
+      list-style: none;
+      margin-bottom: 15px;
+      font-weight: 700;
+      color: $text-color;
+      line-height: normal;
+      position: relative;
+      li {
+        padding: 8px 25px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        border-left: 3px solid transparent;
+        i {
+          width: 22px;
+          height: 22px;
+          font-size: 22px;
+          margin-right: 10px;
+          border-radius: 4px;
+        }
+
+        &:hover {
+          color: white;
+        }
+      }
+    }
+    .gach {
+      width: 80%;
+      height: 1px;
+      background-color: $border-primary;
+      margin: 0 auto;
+    }
+    .sideBar__music {
+      position: relative;
+      // overflow: hidden;
+      width: 100%;
+      height: 100%;
+      .sideBar__menu2 {
+        position: absolute;
+        inset: 0px;
+        list-style: none;
+        overflow: hidden scroll;
+        margin-bottom: 15px;
+        font-weight: 700;
+        color: $text-color;
+        line-height: normal;
+        scroll-behavior: smooth;
+        &::-webkit-scrollbar {
+          // background-color: transparent;
+          width: 6px;
+          transition: all 0.5s;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: $border-primary;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+        li {
+          padding: 7px 25px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          white-space: nowrap;
+          i {
+            width: 22px;
+            height: 22px;
+            font-size: 22px;
+            margin-right: 10px;
+            border-radius: 4px;
+          }
+
+          &:hover {
+            color: white;
+          }
+        }
+      }
+      .isScroll {
+        -webkit-mask-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0.8) 10%, #fff 25%, #fff);
+      }
+      .sideBar__banner {
+        padding: 15px 8px;
+        border-radius: 8px;
+        margin: 10px 20px;
+        text-align: center;
+        background-image: linear-gradient(117deg, #5a4be7, #c86dd7 102%);
+        p {
+          font-size: 12px;
+          margin-bottom: 10px;
+          font-weight: 600;
+          border-color: #ffdb00;
+          line-height: 1.67;
+          color: white;
+        }
+        button {
+          @include button(#ffdb00, black);
+        }
+      }
+      .sideBar__category {
+        margin-top: 25px;
+        &:hover {
+          .sideBar__text {
+            i {
+              opacity: 1;
+            }
+          }
+        }
+        .sideBar__text {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-weight: 700;
+          color: white;
+          text-transform: uppercase;
+          margin: 0 28px 8px;
+          white-space: nowrap;
+          i {
+            position: relative;
+            background-color: transparent;
+            opacity: 0;
+            padding: 7px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            &:hover {
+              background-color: $border-primary;
+            }
+          }
+        }
+      }
+    }
+    .sideBar__footer {
+      position: fixed;
+      bottom: 90px;
+      width: 240px;
+      height: 49px;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      color: $text-color;
+      font-size: 16px;
+      font-weight: 700;
+      background-color: transparent;
+      border-top: 1px solid $border-primary;
+    }
+  }
+  .header {
+    position: fixed;
+    left: 240px;
+    right: 320px;
+    top: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    height: 70px;
+    .header__left {
+      flex-grow: 1;
+      display: flex;
+      .header__search {
+        position: relative;
+        border-radius: 20px;
+        height: 40px;
+        background-color: $alpha-bg;
+        width: 540px;
+        display: flex;
+        align-items: center;
+        input {
+          background-color: transparent;
+          width: 80%;
+          margin-left: 40px;
+          &:focus-visible {
+            outline: none;
+          }
+          &::placeholder {
+            color: white;
+          }
+        }
+      }
+    }
+    .header__right {
+      flex-grow: 0;
+      button {
+        background-color: $alpha-bg;
+      }
+    }
+  }
+  .listMusic {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 320px;
+    border-bottom: none;
+    border-left: 1px solid $border-primary;
+    height: 100%;
+    .listMusic__tab {
+      display: flex;
+      justify-content: space-between;
+      .listMusic__content {
+        background-color: $alpha-bg;
+        border-radius: 999px;
+        padding: 4px;
+        .listMusic__items {
+          padding: 5px 10px;
+          border-radius: 999px;
+          white-space: nowrap;
+          font-size: 12px;
+          cursor: pointer;
+          opacity: 0.7;
+        }
+        .is-active {
+          background-color: $tab-active-bg;
+          opacity: 1;
+        }
+      }
+    }
+    .button__vip {
+      background-color: $alpha-bg;
+    }
+    .listMusic__content {
+      overflow: hidden scroll;
+      height: calc(100% - 68px);
+      &::-webkit-scrollbar {
+        // background-color: transparent;
+        width: 6px;
+        transition: all 0.5s;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: $border-primary;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .media {
+        &:hover {
+          background-color: $alpha-bg;
+          .media__text {
+            opacity: 1;
+          }
+        }
+      }
+      .activeBgPink {
+        background-color: $purple__3 !important;
+        color: white;
+        opacity: 1;
+        &:hover {
+          background-color: transparent;
+          color: white;
+        }
+        p {
+          color: white;
+          opacity: 1;
+          &:hover {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+  .footer {
+    position: absolute;
+    bottom: -90px;
+    color: black;
+    height: 90px;
+    width: 100%;
+    .imgDetails {
+      width: 60px;
+      height: 60px;
+    }
+    .footer__center {
+      .footer__button {
+        button {
+          font-weight: 400;
+          text-align: center;
+          background-color: transparent;
+          border-radius: 999px;
+          padding: 0 6px;
+          margin: 0 7px;
+          &:hover {
+            background-color: $alpha-bg;
+          }
+          i {
+            font-size: 16px;
+            padding: 5px;
+          }
+        }
+      }
+      .button__play {
+        border: 1px solid white;
+        padding: 5px !important;
+        &:hover {
+          color: $purple__3;
+          border-color: $purple__3;
+          background-color: transparent !important;
+        }
+      }
+      #myRange {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 3px;
+        align-self: center;
+        border-radius: 6px;
+        outline: none;
+        -webkit-transition: 0.2s;
+        transition: all 0.2s;
+        &::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          background-color: white;
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          cursor: pointer;
+          display: none;
+        }
+        &:hover {
+          height: 6px;
+          &::-webkit-slider-thumb {
+            display: block;
+          }
+        }
+      }
+    }
+    .footer__right {
+      &__button {
+        font-weight: 400;
+        text-align: center;
+        background-color: transparent;
+        border-radius: 999px;
+        padding: 6px;
+        margin: 0 7px;
+        &:hover {
+          background-color: $alpha-bg;
+        }
+        i {
+          font-size: 16px;
+          padding: 5px;
+        }
+      }
+    }
+  }
+  .khamPhaContent {
+    position: absolute;
+    top: 0;
+    left: 240px;
+    right: 320px;
+    height: calc(100vh - 90px);
+    padding: 0 4vw;
+    overflow: hidden scroll;
+    scroll-behavior: smooth;
+    &::-webkit-scrollbar {
+      // background-color: transparent;
+      width: 6px;
+      transition: all 0.5s;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: $border-primary;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .gallery-content {
+      position: relative;
+      height: calc(18vw - 117px);
+      .galleryButton {
+        position: absolute;
+        padding: 10px 15px;
+        border-radius: 50%;
+        background-color: black;
+        bottom: 40%;
+        background-color: rgba($color: white, $alpha: 0.3);
+        opacity: 1;
+        
+      }
+      .btn1 {
+        left: -10px;
+      }
+      .btn2 {
+        right: -10px;
+      }
+    }
+  }
+
+  .itemGallary {
+    width: 33.3%;
+    position: absolute;
+    img {
+      border-radius: 25px;
+    }
+  }
+
+  .show1 {
+    transform: translateX(0);
+    transition: 0.7s all;
+  }
+  .show2 {
+    transform: translateX(100%);
+    transition: 0.7s all;
+  }
+  .show3 {
+    transform: translateX(200%);
+    transition: 0.7s all;
+  }
+  .hide1 {
+    transform: translateX(20%);
+    transition: 0.7s all;
+    opacity: 0;
+  }
+  .hide2 {
+    transform: translateX(100%);
+    transition: 0.7s all;
+    opacity: 0;
+  }
+  .hide3 {
+    transform: translateX(120%);
+    transition: 0.7s all;
+    opacity: 0;
+  }
+
+  .ngheGanDay {
+    .musicItemView {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: 5px;
+      img {
+        transition: all 0.5s;
+      }
+      .musicItemOverlay {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        position: absolute;
+        background-color: rgba($color: #000000, $alpha: 0.4);
+        opacity: 0;
+        transition: all 0.5s;
+      }
+      .musicItemBtn {
+        width: 100%;
+        position: absolute;
+        top: 43%;
+        display: flex;
+        justify-content: space-around;
+        transition: all 0.5s;
+        span {
+          font-size: 25px;
+          cursor: pointer;
+        }
+        opacity: 0;
+      }
+
+      &:hover {
+        .musicItemOverlay,
+        .musicItemBtn {
+          opacity: 1;
+        }
+        img {
+          transform: scale(1.1);
+        }
+      }
+    }
+    .musicRadio {
+      position: relative;
+      cursor: pointer;
+      .musicRedioContent {
+        width: 146px;
+        height: 146px;
+        border-radius: 999px;
+        overflow: hidden;
+        &:hover{
+          .musicRadioOverlay,.musicBtn{
+            opacity: 1;
+          }
+          img{
+            transform: scale(1.1);
+          }
+        }
+        .musicRadioOverlay {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background-color: rgba($color: #000000, $alpha: 0.55);
+          border-radius: 50%;
+          opacity: 0;
+          transition: all 0.5s;
+        }
+        .musicBtn {
+          position: absolute;
+          top: 35%;
+          left: 45%;
+          font-size: 24px;
+          opacity: 0;
+        }
+        img{
+          transition: all .5s;
+        }
+      }
+      .radioIcon {
+        height: 46px;
+        width: 46px;
+        position: absolute;
+        overflow: hidden;
+        border-radius: 50%;
+        right: -5px;
+        bottom: 5%;
+      }
+      .liveRadio {
+        position: absolute;
+        left: 40%;
+        bottom: -4%;
+        padding: 1px 3px;
+        border-radius: 3px;
+        background-color: red;
+        color: white;
+        font-size: 12px;
+        line-height: 1;
+        letter-spacing: 1px;
+      }
+    }
+  }
+}
