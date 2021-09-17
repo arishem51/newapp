@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/react-deploy/static/css/main.82e08a5f.chunk.css",
-    "main.js": "/react-deploy/static/js/main.219e9075.chunk.js",
-    "main.js.map": "/react-deploy/static/js/main.219e9075.chunk.js.map",
-    "runtime-main.js": "/react-deploy/static/js/runtime-main.8b79ce7f.js",
-    "runtime-main.js.map": "/react-deploy/static/js/runtime-main.8b79ce7f.js.map",
-    "static/js/2.335fe316.chunk.js": "/react-deploy/static/js/2.335fe316.chunk.js",
-    "static/js/2.335fe316.chunk.js.map": "/react-deploy/static/js/2.335fe316.chunk.js.map",
-    "static/js/3.71645644.chunk.js": "/react-deploy/static/js/3.71645644.chunk.js",
-    "static/js/3.71645644.chunk.js.map": "/react-deploy/static/js/3.71645644.chunk.js.map",
-    "index.html": "/react-deploy/index.html",
-    "static/css/main.82e08a5f.chunk.css.map": "/react-deploy/static/css/main.82e08a5f.chunk.css.map",
-    "static/js/2.335fe316.chunk.js.LICENSE.txt": "/react-deploy/static/js/2.335fe316.chunk.js.LICENSE.txt",
-    "static/media/logo.6ce24c58.svg": "/react-deploy/static/media/logo.6ce24c58.svg"
+    "main.css": "/newapp/static/css/main.bb38682e.chunk.css",
+    "main.js": "/newapp/static/js/main.697c5e75.chunk.js",
+    "main.js.map": "/newapp/static/js/main.697c5e75.chunk.js.map",
+    "runtime-main.js": "/newapp/static/js/runtime-main.beac6c0a.js",
+    "runtime-main.js.map": "/newapp/static/js/runtime-main.beac6c0a.js.map",
+    "static/js/2.ea6e907a.chunk.js": "/newapp/static/js/2.ea6e907a.chunk.js",
+    "static/js/2.ea6e907a.chunk.js.map": "/newapp/static/js/2.ea6e907a.chunk.js.map",
+    "static/js/3.71645644.chunk.js": "/newapp/static/js/3.71645644.chunk.js",
+    "static/js/3.71645644.chunk.js.map": "/newapp/static/js/3.71645644.chunk.js.map",
+    "index.html": "/newapp/index.html",
+    "static/css/main.bb38682e.chunk.css.map": "/newapp/static/css/main.bb38682e.chunk.css.map",
+    "static/js/2.ea6e907a.chunk.js.LICENSE.txt": "/newapp/static/js/2.ea6e907a.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/newapp/static/media/logo.6ce24c58.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.8b79ce7f.js",
-    "static/js/2.335fe316.chunk.js",
-    "static/css/main.82e08a5f.chunk.css",
-    "static/js/main.219e9075.chunk.js"
+    "static/js/runtime-main.beac6c0a.js",
+    "static/js/2.ea6e907a.chunk.js",
+    "static/css/main.bb38682e.chunk.css",
+    "static/js/main.697c5e75.chunk.js"
   ]
 }
