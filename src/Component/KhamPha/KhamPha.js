@@ -334,7 +334,7 @@ export default function KhamPha() {
     }
     const renderRadio = ()=>{
         return state.dataRadio.map((item,index)=>{
-            return <div key={index} className='p-3'>
+            return <div key={index} className='p-2'>
                     <MusicRadio item={item}></MusicRadio>
                     <div className='w-full flex items-center justify-center flex-col mt-3'>
                             <p className='font-bold text-lg cursor-pointer hover:text-pink-500'>{item.title}</p>
@@ -358,7 +358,6 @@ export default function KhamPha() {
                     boxShadow:'',
                 })
             }
-            console.log([e.target.scrollTop])
         }}>
             <div className='mt-14'>
                 <div className='gallery pt-6'>
@@ -399,7 +398,7 @@ export default function KhamPha() {
             </div>
             <div className='ngheGanDay mt-3'>
                 <h3 className='px-3 mt-4 text-xl font-bold'>RADIO NỔI BẬT</h3>
-                <div className='flex'>
+                <div className='flex radioContent flex-wrap'>
                     {renderRadio()}
                 </div>
             </div>
