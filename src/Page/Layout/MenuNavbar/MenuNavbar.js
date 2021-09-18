@@ -18,7 +18,7 @@ export default function MenuNavbar() {
             <div className='sideBar__menu'>
                 <ul>
                     <NavLink exact to='/profile'  activeClassName='activeLi'><li><i ><SmileOutlined className='block' /></i>Cá Nhân</li></NavLink>
-                    <NavLink exact to='/' activeClassName='activeLi'><li><i ><PlayCircleOutlined className='block' /></i>Khám Phá</li></NavLink>
+                    <NavLink exact to='/newapp' activeClassName='activeLi'><li><i ><PlayCircleOutlined className='block' /></i>Khám Phá</li></NavLink>
                     <li ><i> <AliwangwangOutlined className='block' /> </i> #Zingchart</li>
                     <li><i><CustomerServiceOutlined className='block' /></i>Radio & Podcast <span className='mt-1 ml-2'><img src='https://zjs.zadn.vn/zmp3-desktop/dev/147506/static/media/live-tag.e25dd240.svg' alt='liveLogo'></img></span></li>
                     <li><i ><TeamOutlined className='block' /></i>Theo Dõi</li>

@@ -558,4 +558,21 @@
       }
     }
   }
+
+  @media (max-width:1600px) {
+      .listMusic{
+        display: none;
+      }
+      .header{
+        right: 0;
+      }
+
+      .khamPhaContent{
+        right: 0;
+        .gallery-content{
+          height: calc(18vw - 50px);
+        }
+      }
+      
+  }
 }

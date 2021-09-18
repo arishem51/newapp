@@ -346,7 +346,7 @@ export default function KhamPha() {
     return (
         <div className='khamPhaContent' onScroll={(e)=>{
              const header = e.target.previousSibling.style 
-            if(e.target.scrollTop > 130){
+            if(e.target.scrollTop > 80){
                 Object.assign(header,{
                     backgroundColor:'#37075d',
                     boxShadow:'0 3px 5px rgba(0,0,0,0.1)',

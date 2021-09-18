@@ -14,7 +14,7 @@ function App() {
   return (
     <Router history={history}>
       <Switch>
-        <HomeTemplate exact path='/' Component={KhamPha}></HomeTemplate>
+        <HomeTemplate exact path='/newapp' Component={KhamPha}></HomeTemplate>
         <HomeTemplate exact path='/profile' Component={Profile}></HomeTemplate>
       </Switch>
     </Router>

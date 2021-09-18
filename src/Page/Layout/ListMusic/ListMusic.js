@@ -17,7 +17,8 @@ export default function ListMusic() {
     useEffect(()=>{
         if(listSong.length > 0){
             setState({
-                listNhac:listSong
+                listNhac:listSong,
+                active:true
             })
         }
     },[listSong])
@@ -35,7 +36,7 @@ export default function ListMusic() {
     const classDSNGD = state.active ? '' : 'is-active';
     const renderListNhac = ()=>{
         return state.listNhac?.map((item,index)=>{
-            return <MusicItem listSong={listSong} item={item} index ={index}></MusicItem>
+            return <MusicItem listSong={listSong} item={item} key ={index}></MusicItem>
         })
     }
     return (
