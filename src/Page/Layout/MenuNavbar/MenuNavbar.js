@@ -1,7 +1,13 @@
 import React from 'react'
 import { UserOutlined, LoadingOutlined, CodepenCircleOutlined, TeamOutlined, SmileOutlined, PlayCircleOutlined, AliwangwangOutlined, CustomerServiceOutlined } from '@ant-design/icons'
 import { NavLink } from 'react-router-dom';
+import { useDispatch,useSelector } from 'react-redux';
+import NewPlaylist from '../../../Component/NewPlaylist/NewPlaylist';
+import { OPEN_MODAL } from '../../../Redux/type/Music';
 export default function MenuNavbar() {
+    const dispatch = useDispatch();
+    const {listPlaylist} = useSelector(state => state.PlaylistReducer);
+
     const handleScroll = (e) => {
         e.target.classList.add('isScroll');
         if (e.target.scrollTop > 10) {
@@ -9,6 +15,12 @@ export default function MenuNavbar() {
         } else {
             e.target.classList.remove('isScroll');
         }
+    }
+    const handleClick = ()=>{
+        dispatch({
+            type:OPEN_MODAL,
+            Component:<NewPlaylist></NewPlaylist>
+        })
     }
     return (
         <div className='sideBar' >
@@ -50,16 +62,19 @@ export default function MenuNavbar() {
                                 <li><i> <AliwangwangOutlined className='block' /> </i>Album</li>
                                 <li><i><CustomerServiceOutlined className='block' /></i>Nhạc tải lên<span className='mt-1 ml-2'></span></li>
                                 <li><i> <AliwangwangOutlined className='block' /> </i>Gần đây</li>
-                                <li><i><CustomerServiceOutlined className='block' /></i>List Cá Nhân<span className='mt-1 ml-2'></span></li>
-                                <li><i><CustomerServiceOutlined className='block' /></i>Nhạc tải lên<span className='mt-1 ml-2'></span></li>
-                                <li><i> <AliwangwangOutlined className='block' /> </i>Gần đây</li>
-                                <li><i><CustomerServiceOutlined className='block' /></i>List Cá Nhân<span className='mt-1 ml-2'></span></li>
                             </ul>
                         </div>
                     </div>
+                    <div className='sideBar__playlist'>
+                            {listPlaylist.map((item,index)=>{
+                                return <div key={index} className='playlist_item opacity-70 hover:opacity-100'>
+                                    <NavLink to={`/playlist/${item.name}`} style={{width:'100%',height:'100%',fontSize:'14px'}}>{item.name}</NavLink>
+                                </div>
+                            })}
+                    </div>
                 </div>
             </div>
-            <div className='sideBar__footer cursor-pointer'>
+            <div className='sideBar__footer cursor-pointer' onClick={handleClick}>
                 <span><i class="fa fa-plus mr-2"></i>Tạo playlist mới</span>
             </div>
         </div>

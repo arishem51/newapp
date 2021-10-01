@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {ArrowLeftOutlined,ArrowRightOutlined,SearchOutlined} from '@ant-design/icons'
 
 export default function Header() {
-    
+    let [tenBaiHat,setTenBaiHat] = useState({
+        value : '',
+    })
     return (
+        
         <div className='header'>
             <div className='header__content flex justify-between w-full'>
                 <div className='header__left    '>
@@ -11,7 +14,7 @@ export default function Header() {
                         <button disabled><ArrowRightOutlined  className='mr-5 flex items-center' style={{fontSize:'24px'}}/></button>
                         <div className='header__search'>
                         <SearchOutlined className='mr-5' style={{fontSize:'24px',position:'absolute',left:'10px'}}/>
-                            <input placeholder='Nhập tên bài hát, nghệ sĩ hoặc MV...'>
+                            <input placeholder='Nhập tên bài hát, nghệ sĩ hoặc MV...' name='tenBaiHat'>
                             </input>
                         </div>
                 </div>

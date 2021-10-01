@@ -21,7 +21,7 @@ export const getListSongAction = ()=>{
 }
 
 
-export const getSongDetailAction = newSong =>{
+export const getSongDetailAction = (newSong,typeSong=true) =>{
     return async dispatch =>{
         try {
             const {data,status} = await axios({
@@ -29,9 +29,11 @@ export const getSongDetailAction = newSong =>{
                 url:`https://mp3.zing.vn/xhr/media/get-source?type=audio&key=${newSong.code}`
             })
            if(status === 200){
+               console.log(typeSong,'typeSongACtion')
             dispatch({
                 type:SONG_DETAIL,
-                songDetail:data.data
+                songDetail:data.data,
+                typeSong:typeSong
             })
            }
         } catch (error) {

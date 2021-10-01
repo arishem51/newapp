@@ -1,51 +1,61 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import _ from 'lodash'
-import {  getSongDetailAction } from '../../../Redux/action/ListMusicAction';
+import { getSongDetailAction } from '../../../Redux/action/ListMusicAction';
 import { useSpring, animated, to } from 'react-spring'
 import moment from 'moment'
 
 
-export default function Footer() {
+export default function Footer(props) {
     const audioRef = useRef(null);
     const myInput = useRef(null)
     const [timeSong, setTimeSong] = useState(0)
     const [duration, setDuration] = useState(0)
-    const [loop,setLoop] = useState(false);
-    const [shuffle,setShuffle] = useState(false);
+    const [loop, setLoop] = useState(false);
+    const [shuffle, setShuffle] = useState(false);
     const dispatch = useDispatch();
-    let { listSong, songDetail} = useSelector(state => state.SongReducer);
-    const changeSong = (thamSo) => {
-        const baiHatCuoiCung = listSong[listSong.length - 1];
-        //tim bai dang phat (songDetail) trong listSong;
+    let { listSong, songDetail, typeSong } = useSelector(state => state.SongReducer);
+    const { listPlaylist } = useSelector(state => state.PlaylistReducer);
+    // console.log(props.computedMatch.params.name)
+    const changeSong = (thamSo, list = listSong) => {
+        if (typeSong === false) {
+            const path = props.computedMatch.params.name;
+            const index = listPlaylist.findIndex(item => item.name === path)
+            if (index !== -1) {
+                list = listPlaylist[index].listBaiHat
+            }
+        }
+        console.log(typeSong)
+        const baiHatCuoiCung = list[list.length - 1];
+        //tim bai dang phat (songDetail) trong list;
         //neu nhu bai nay la index thu = (index = 0) return; ko lam gi ca
-        const index = listSong.findIndex(item => item.id === songDetail.id)
+        const index = list.findIndex(item => item.id === songDetail.id)
         let baiHatHienTai = {};
         if (index !== -1) {
             if (thamSo === 1) {
-                if (listSong[index].id === baiHatCuoiCung.id) {
+                if (list[index].id === baiHatCuoiCung.id) {
                     console.log('Day la bai cuoi cung')
                     return;
                 } else {
-                    baiHatHienTai = listSong[index + thamSo]
+                    baiHatHienTai = list[index + thamSo]
                 }
             } else if (thamSo === -1) {
                 if (index === 0) {
                     console.log("Day la bai dau tien")
                     return;
                 } else {
-                    baiHatHienTai = listSong[index + thamSo]
+                    baiHatHienTai = list[index + thamSo]
                 }
             } else {
                 return;
             }
         }
-        dispatch(getSongDetailAction(baiHatHienTai))
+        dispatch(getSongDetailAction(baiHatHienTai,typeSong))
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
-        if(songDetail.source !== undefined){
+        if (songDetail.source !== undefined) {
             updateSong(`https://vnso-qt-3-tf-${songDetail.source['128']?.slice(2)}`)
             audioRef.current.play()
         }
@@ -60,12 +70,6 @@ export default function Footer() {
             play: true,
         });
     }
-    // useEffect(() => {
-    //     updateSong(`https://vnso-qt-3-tf-${mp3Song['128']?.slice(2)}`)
-    //     if (audio.play) {
-    //         audioRef.current.play();
-    //     }
-    // }, [mp3Song])
     const spring = useSpring({
         loop: true,
         from: {
@@ -82,24 +86,34 @@ export default function Footer() {
         setDuration(audioRef.current.duration);
         // audioRef.current.play()
     }
-    const  handleEnded = ()=>{
+    const handleEnded = () => {
+        let list = listSong
         setAudio({
             ...audio,
-            play:false
+            play: false
         })
         audioRef.current.pause()
-        const baiHatCuoiCung = listSong[listSong.length - 1];
-        let index = listSong.findIndex(item => item.id === songDetail.id)
-        if(index !== -1){
-            if(shuffle){
-                const random = Math.floor(Math.random() * 100);
-                dispatch(getSongDetailAction(listSong[random]))
+        if (typeSong === false) {
+            const path = props.computedMatch.params.name;
+            const index = listPlaylist.findIndex(item => item.name === path)
+            if (index !== -1) {
+                list = listPlaylist[index].listBaiHat
             }
-            else if(listSong[index].id === baiHatCuoiCung.id){
+        }
+        console.log('typeSong',typeSong)
+        console.log(list)
+        const baiHatCuoiCung = list[list.length - 1];
+        let index = list.findIndex(item => item.id === songDetail.id)
+        if (index !== -1) {
+            if (shuffle) {
+                const random = Math.floor(Math.random() * 100);
+                dispatch(getSongDetailAction(list[random],typeSong))
+            }
+            else if (list[index].id === baiHatCuoiCung.id) {
                 console.log("Day la bai hat cuoi cung")
-                return ;
-            }else{
-                dispatch(getSongDetailAction(listSong[index+1]));
+                return;
+            } else {
+                dispatch(getSongDetailAction(list[index + 1],typeSong));
             }
         }
     }
@@ -120,9 +134,9 @@ export default function Footer() {
             </div>
             <div className='footer__center flex flex-col flex-grow'>
                 <div className='flex text-white footer__button justify-center'>
-                    <button onClick={()=>{ setShuffle(!shuffle) }}><i className={`fa fa-random ${shuffle ? 'text-pink-500' : ''}`}></i></button>
+                    <button onClick={() => { setShuffle(!shuffle) }}><i className={`fa fa-random ${shuffle ? 'text-pink-500' : ''}`}></i></button>
                     <button onClick={() => {
-                        changeSong(-1)
+                       changeSong(-1)
                     }} ><i className="fa fa-arrow-left"></i></button>
                     <button className='button__play' onClick={() => {
                         if (audio.play) {
@@ -138,7 +152,7 @@ export default function Footer() {
                     <button onClick={() => {
                         changeSong(1)
                     }}><i className="fa fa-arrow-right"></i></button>
-                    <button onClick={()=>{setLoop(!loop)}}><i className={`fa fa-redo ${loop ? 'text-pink-500' : ''}`}></i></button>
+                    <button onClick={() => { setLoop(!loop) }}><i className={`fa fa-redo ${loop ? 'text-pink-500' : ''}`}></i></button>
                 </div>
                 <div className='flex flex-1 text-white mt-2'>
 
@@ -168,13 +182,13 @@ export default function Footer() {
                     onTimeUpdate={() => setTimeSong(audioRef.current.currentTime)}
                     onEnded={handleEnded}
                 /> : <audio
-                autoPlay
-                ref={audioRef}
-                src={audio.source}
-                onLoadedData={handleLoadedData}
-                onTimeUpdate={() => setTimeSong(audioRef.current.currentTime)}
-                onEnded={handleEnded}
-            />}
+                    autoPlay
+                    ref={audioRef}
+                    src={audio.source}
+                    onLoadedData={handleLoadedData}
+                    onTimeUpdate={() => setTimeSong(audioRef.current.currentTime)}
+                    onEnded={handleEnded}
+                />}
             </div>
             <div style={{ width: '30%' }} className='footer__right flex justify-end text-white'>
                 <button className='footer__right__button'><i class="fa fa-film "></i></button>

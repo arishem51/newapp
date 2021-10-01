@@ -15,7 +15,7 @@ export const HomeTemplate  = (props)=>{
                     <Component {...propsRouter}></Component>
                 </div>
                 <ListMusic ></ListMusic>
-                <Footer></Footer>
+                <Footer {...restProps}></Footer>
         </div>
     }}></Route>
 }

@@ -168,6 +168,17 @@
           }
         }
       }
+      .sideBar__playlist {
+        margin-top: 10px;
+        .playlist_item {
+          display: flex;
+          cursor: pointer;
+          align-items: center;
+          a {
+            padding: 7px 25px;
+          }
+        }
+      }
     }
     .sideBar__footer {
       position: fixed;
@@ -261,7 +272,6 @@
       overflow: hidden scroll;
       height: calc(100% - 68px);
       &::-webkit-scrollbar {
-        // background-color: transparent;
         width: 6px;
         transition: all 0.5s;
       }
@@ -407,7 +417,6 @@
         bottom: 40%;
         background-color: rgba($color: white, $alpha: 0.3);
         opacity: 1;
-        
       }
       .btn1 {
         left: -10px;
@@ -505,11 +514,12 @@
         height: 146px;
         border-radius: 999px;
         overflow: hidden;
-        &:hover{
-          .musicRadioOverlay,.musicBtn{
+        &:hover {
+          .musicRadioOverlay,
+          .musicBtn {
             opacity: 1;
           }
-          img{
+          img {
             transform: scale(1.1);
           }
         }
@@ -531,8 +541,8 @@
           font-size: 24px;
           opacity: 0;
         }
-        img{
-          transition: all .5s;
+        img {
+          transition: all 0.5s;
         }
       }
       .radioIcon {
@@ -559,20 +569,106 @@
     }
   }
 
-  @media (max-width:1600px) {
-      .listMusic{
-        display: none;
-      }
-      .header{
-        right: 0;
-      }
-
-      .khamPhaContent{
-        right: 0;
-        .gallery-content{
-          height: calc(18vw - 50px);
+  .playlist_content {
+    position: absolute;
+    left: 240px;
+    right: 320px;
+    height: calc(100vh - 90px);
+    overflow: hidden scroll;
+    padding: 100px 77px 0;
+    &::-webkit-scrollbar {
+      width: 6px;
+      transition: all 0.5s;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: $border-primary;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .playlist_left{
+      position: fixed;
+      width: 16%;
+      .playlist_btn{
+        button{
+          @include btnPlaylist();
         }
       }
-     
+    }
+    .playlist_right{
+      margin-left: 26%;
+      padding: 0 20px;
+      .playlist_listBaiHat{
+        .container_listBaiHat{
+          width: 100%;
+          background-color: $alpha-bg;
+          padding: 70px 0;
+          
+        }
+      }
+      .baiHatGoiY_item{
+        border-radius: 5px;
+        &:hover{
+          background-color: $alpha-bg;
+        }
+      }
+    }
+  }
+
+  .hocPlaylist {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 101;
+
+    background-color: rgba($color: black, $alpha: 0.7);
+    .hocPlaylistContent {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .createPlaylist {
+        background-color: $purple__1;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        width: 330px;
+        p {
+          font-size: 20px;
+          font-weight: 500;
+          margin-bottom: 10px;
+        }
+        input {
+          display: flex;
+          align-items: center;
+          outline: none;
+          padding: 0 15px;
+          height: 40px;
+          width: 100%;
+          border-radius: 999px;
+          background-color: $alpha-bg;
+          border: 1px solid $border-primary;
+        }
+        button{
+          @include btnPlaylist();
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1600px) {
+    .listMusic {
+      display: none;
+    }
+    .header {
+      right: 0;
+    }
+
+    .khamPhaContent {
+      right: 0;
+      .gallery-content {
+        height: calc(18vw - 50px);
+      }
+    }
   }
 }
