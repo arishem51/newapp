@@ -16,7 +16,6 @@ export default function Footer(props) {
     const dispatch = useDispatch();
     let { listSong, songDetail, typeSong } = useSelector(state => state.SongReducer);
     const { listPlaylist } = useSelector(state => state.PlaylistReducer);
-    // console.log(props.computedMatch.params.name)
     const changeSong = (thamSo, list = listSong) => {
         if (typeSong === false) {
             const path = props.computedMatch.params.name;
@@ -25,7 +24,6 @@ export default function Footer(props) {
                 list = listPlaylist[index].listBaiHat
             }
         }
-        console.log(typeSong)
         const baiHatCuoiCung = list[list.length - 1];
         //tim bai dang phat (songDetail) trong list;
         //neu nhu bai nay la index thu = (index = 0) return; ko lam gi ca
@@ -100,8 +98,6 @@ export default function Footer(props) {
                 list = listPlaylist[index].listBaiHat
             }
         }
-        console.log('typeSong',typeSong)
-        console.log(list)
         const baiHatCuoiCung = list[list.length - 1];
         let index = list.findIndex(item => item.id === songDetail.id)
         if (index !== -1) {
