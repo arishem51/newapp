@@ -29,7 +29,6 @@ export const getSongDetailAction = (newSong,typeSong=true) =>{
                 url:`https://mp3.zing.vn/xhr/media/get-source?type=audio&key=${newSong.code}`
             })
            if(status === 200){
-               console.log(typeSong,'typeSongACtion')
             dispatch({
                 type:SONG_DETAIL,
                 songDetail:data.data,
